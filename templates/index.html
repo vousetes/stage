@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brightstudies</title>
-</head>
-<body>
-    <div>
-        <h1> Bienvenu sur notre plateforme de gestion Estutidiantine</h1>
-    <h2>Cette application integre une gestion interactive des pour les parents,etudiant et le personnel</h2>
+{% extends './layouts/base.html' %}
+
+{% block title%}
+
+  BrightStudies - Accueil
+  
+{% endblock %}
+
+{% block content %}
+
+ <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold text-body-emphasis">BrightStudies</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Meilleure plateforme de Gestion estudiantine</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Inscription Enseignant</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Inscription Etudiant</button>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+
+{% endblock %}
+
+<
