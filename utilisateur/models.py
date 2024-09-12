@@ -10,7 +10,7 @@ UTILISATEUR_TYPES_CHOICES =(
     ("adminitration_menbre","Menbre d'administration"),
     ("Etudiant", "Etudiant"),
     ("Enseignant", "Enseignant"),
-    ("Parent", "Parent"),
+   
 
 )
 
