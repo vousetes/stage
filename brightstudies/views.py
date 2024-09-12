@@ -1,5 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from dashboard.forms import EtudiantForm
+
 
 def index(request):
     return render(request, "index.html")
@@ -18,3 +20,6 @@ def apropos(request):
 def services(request):
     return render(request, "services.html")
 
+def insription_etudiant(request):
+    form = EtudiantForm()
+    return render(request, "inscription-etudiant.html",{"form":form})
