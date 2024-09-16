@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Enseignant</title>
+</head>
+<body>
+    <h2>Bienvenue sur votre profil, {{ user.nom }} {{ user.prenom }}</h2>
+
+    <!-- Contenu du profil enseignant -->
+
+    <!-- Formulaire de déconnexion -->
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Déconnexion</button>
+    </form>
+
+</body>
+</html>

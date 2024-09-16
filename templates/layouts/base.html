@@ -46,8 +46,8 @@
                                 Connexion
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Étudiant</a></li>
-                                <li><a class="dropdown-item" href="#">Enseignant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}?type=Etudiant">Étudiant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}?type=Enseignant">Enseignant</a></li>
                             </ul>
                         </li>
                     </ul>

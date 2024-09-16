@@ -23,3 +23,14 @@ def services(request):
 def insription_etudiant(request):
     form = EtudiantForm()
     return render(request, "inscription-etudiant.html",{"form":form})
+
+def login(request):
+    return render(request, "login.html")
+
+def profil_etudiant_view(request):
+    # Logique pour le profil étudiant
+    return render(request, 'profil_etudiant.html')
+
+def profil_enseignant_view(request):
+    # Logique pour le profil enseignant
+    return render(request, 'profil_enseignant.html')

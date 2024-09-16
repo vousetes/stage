@@ -10,3 +10,11 @@ class EtudiantForm(forms.ModelForm):
     class Meta:
         model = Etudiant
         fields = ["Birthday","Enrollement_date","Semester","Etudes_Programme"]
+
+
+
+
+
+
+
+

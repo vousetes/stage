@@ -135,3 +135,15 @@ AUTH_USER_MODEL="utilisateur.utilisateur"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'greenlifehospital88@gmail.com'  # Remplace par ton email Gmail
+EMAIL_HOST_PASSWORD = 'itjy uigo mfkc uvbe'  # Remplace par ton mot de passe ou ton mot de passe d'application
+DEFAULT_FROM_EMAIL = 'greenlifehospital88@gmail.com'
+
+LOGIN_REDIRECT_URL = "index"  # Redirige vers la page d'accueil après connexion
+LOGOUT_REDIRECT_URL = "login"  # Redirige vers la page de connexion après déconnexion

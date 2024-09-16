@@ -3,8 +3,22 @@ from django.http.request import HttpRequest
 from dashboard.forms import EtudiantForm
 from utilisateur.models import utilisateur
 from dashboard.models import Etudiant
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth import authenticate, login
+from .forms import CustomLoginForm
+
+
 
 from django.contrib import messages
+
+# Fonction d'envoi de l'email
+def send_confirmation_email(couriel, nom):
+    subject = 'Confirmation de votre inscription'
+    message = f'Bonjour {nom},\n\nVotre admission a été envoyer ! Veillez atttendre vos identifiant de la part de BrightStudies.'
+    email_from = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [couriel]
+    send_mail(subject, message, email_from, recipient_list)
 
 
 
@@ -42,7 +56,9 @@ def validate_inscription(request: HttpRequest):
                 newEtudiant.Semester = str(Semester)
                 newEtudiant.Etudes_Programme = str(Etudes_Programme)
                 newEtudiant.save()
-                messages.success(request, "Votre inscription a été réussie")
+
+                send_confirmation_email(couriel, nom)
+                messages.success(request, "Votre admission a été envoyer avec success")
                 return redirect("inscription_etudiant")
 
 
@@ -53,7 +69,45 @@ def validate_inscription(request: HttpRequest):
 
 
     else: 
-        return redirect("inscription_etudiant")    
+        return redirect("inscription_etudiant") 
 
 
-# Create your views here.
+
+
+def login_view(request):
+    # Récupère le type d'utilisateur depuis GET ou POST
+    user_type = request.POST.get('type') or request.GET.get('type')
+
+    if request.method == "POST":
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = authenticate(request, username=email, password=password)
+
+            if user is not None:
+                # Vérifie si le type d'utilisateur est correct
+                print(f"Utilisateur connecté : {user.email} - Type : {user.type_utilisateur}")
+
+                # Empêcher un enseignant de se connecter en tant qu'étudiant et vice versa
+                if user_type == "Etudiant" and user.type_utilisateur != "Etudiant":
+                    messages.error(request, "Vous avez sélectionné 'Étudiant', mais votre compte est enregistré comme Enseignant.")
+                    return redirect("login")
+                if user_type == "Enseignant" and user.type_utilisateur != "Enseignant":
+                    messages.error(request, "Vous avez sélectionné 'Enseignant', mais votre compte est enregistré comme Étudiant.")
+                    return redirect("login")
+
+                # Si tout est correct, connecter l'utilisateur
+                login(request, user)
+                print("Connexion réussie")
+                
+                # Rediriger vers la bonne page de profil
+                if user.type_utilisateur == "Etudiant":
+                    return redirect("profil_etudiant")
+                elif user.type_utilisateur == "Enseignant":
+                    return redirect("profil_enseignant")
+
+    else:
+        form = CustomLoginForm()
+
+    return render(request, "login.html", {"form": form})
