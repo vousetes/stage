@@ -34,3 +34,11 @@ class utilisateurAdmin(UserAdmin):
 
 
 admin.site.register(utilisateur,utilisateurAdmin)
+
+
+
+
+
+
+
+
