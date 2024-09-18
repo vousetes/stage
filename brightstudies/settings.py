@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'utilisateur',
     'dashboard',
     'auth_gateway',
+    'cours',
+    'examens',
+    'notes',
+    'ressource',
     'crispy_forms',
     "crispy_bootstrap4",
 ]
@@ -147,3 +151,13 @@ DEFAULT_FROM_EMAIL = 'greenlifehospital88@gmail.com'
 
 LOGIN_REDIRECT_URL = "index"  # Redirige vers la page d'accueil après connexion
 LOGOUT_REDIRECT_URL = "login"  # Redirige vers la page de connexion après déconnexion
+LOGIN_URL = '/login/'  # Assurez-vous que c'est l'URL correcte de votre vue de connexion
+
+
+import os
+
+# Ajouter ces lignes pour les fichiers uploadés
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# S'assurer que le répertoire MEDIA_ROOT est utilisé pour stocker les fichiers uploadés
