@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'ressource',
     'crispy_forms',
     "crispy_bootstrap4",
+    "brightstudies",
 ]
 
 MIDDLEWARE = [
