@@ -1,0 +1,12 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <!-- Champ pour l'enseignant -->
+    <div class="form-group">
+        <label for="id_enseignant_label">Enseignant</label>
+        {{ form.enseignant_label }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter le cours</button>
+</form>

@@ -23,7 +23,7 @@ def ajouter_cours(request):
     else:
         form = CoursForm(user=request.user)  # Passer l'utilisateur connecté
 
-    return render(request, 'ajouter_cours.html', {'form': form})
+    return render(request, 'cours/ajouter_cours.html', {'form': form})
 
 @login_required
 @user_passes_test(lambda u: u.type_utilisateur == 'Enseignant')
@@ -31,7 +31,7 @@ def liste_cours_par_programme(request):
     # Lister tous les cours, car seul un enseignant peut voir cette vue
     cours = Cours.objects.all()
     
-    return render(request, 'cours_liste.html', {'cours': cours})
+    return render(request, 'cours/cours_liste.html', {'cours': cours})
 
 
 @login_required
@@ -47,7 +47,7 @@ def modifier_cours(request, cours_id):
     else:
         form = CoursForm(instance=cours)
     
-    return render(request, 'modifier_cours.html', {'form': form, 'cours': cours})
+    return render(request, 'cours/modifier_cours.html', {'form': form, 'cours': cours})
 
 @login_required
 @user_passes_test(lambda u: u.type_utilisateur == 'Enseignant')
@@ -58,7 +58,7 @@ def supprimer_cours(request, cours_id):
         cours.delete()
         return HttpResponseRedirect(reverse('cours_liste'))  # Redirige vers la liste des cours
     
-    return render(request, 'supprimer_cours.html', {'cours': cours})
+    return render(request, 'cours/supprimer_cours.html', {'cours': cours})
 
 
 @login_required
@@ -74,7 +74,7 @@ def profil_enseignant_view(request):
     for c in cours:
         examens_par_cours[str(c.id)] = Examen.objects.filter(cours=c)
     
-    return render(request, 'profil_enseignant.html', {
+    return render(request, 'cours/profil_enseignant.html', {
         'cours': cours,
         'examens_par_cours': examens_par_cours,  # Passer le dictionnaire au template
     })
@@ -85,4 +85,4 @@ def cours_detail(request, cours_id):
     cours = get_object_or_404(Cours, id=cours_id)
     ressources = Ressource.objects.filter(cours=cours)
 
-    return render(request, 'cours_detail.html', {'cours': cours, 'ressources': ressources})
+    return render(request, 'cours/cours_detail.html', {'cours': cours, 'ressources': ressources})
