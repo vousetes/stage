@@ -64,7 +64,7 @@ def validate_inscription(request: HttpRequest):
 
 
         else:
-            return render(request, "inscription_etudiant.html", {"form": form})
+            return render(request, "auth/inscription-etudiant.html", {"form": form})
 
 
 
@@ -110,4 +110,4 @@ def login_view(request):
     else:
         form = CustomLoginForm()
 
-    return render(request, "login.html", {"form": form})
+    return render(request, "auth/login.html", {"form": form})
