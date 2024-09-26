@@ -20,4 +20,4 @@ def attribuer_notes(request, examen_id):
     else:
         form = NoteForm()  # Initialiser le formulaire sans l'étudiant
     
-    return render(request, 'attribuer_notes.html', {'examen': examen, 'form': form})
+    return render(request, 'notes/attribuer_notes.html', {'examen': examen, 'form': form})
