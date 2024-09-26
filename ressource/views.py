@@ -21,4 +21,4 @@ def ajouter_ressource(request, cours_id):
     else:
         form = RessourceForm()
 
-    return render(request, 'ajouter_ressource.html', {'form': form, 'cours': cours})
+    return render(request, 'ressource/ajouter_ressource.html', {'form': form, 'cours': cours})
